@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 int main() {
-    arena_t arena = arena_create(40000);
+    cback_arena arena = arena_create(40000);
 
     int *ptr = arena_alloc(&arena, 10);
     ptr[0] = 2020;

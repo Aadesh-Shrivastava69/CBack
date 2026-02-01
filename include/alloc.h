@@ -7,11 +7,11 @@ typedef struct {
     u8 *base;
     u32 size;
     u32 used;
-} arena_t;
+} cback_arena;
 
-arena_t arena_create(u32 size);
-void arena_destroy(arena_t *a);
-void *arena_alloc(arena_t *a, u32 size);
-void arena_reset(arena_t *a);
+cback_arena arena_create(u32 size);
+void arena_destroy(cback_arena *a);
+void *arena_alloc(cback_arena *a, u32 size);
+void arena_reset(cback_arena *a);
 
 #endif
