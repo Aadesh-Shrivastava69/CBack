@@ -15,9 +15,14 @@ int main() {
     cback_net_conn net3 = net_connect(NULL, "youtube.com", "80");
     cback_hash_map_put(hm, &net3.sock_fd, &net3);
 
-    cback_hash_node g_net;
-    cback_hash_map_get(hm, &net3.sock_fd, &g_net);
-
     printf("Looked for %d\n", net3.sock_fd);
-    printf("Got key: %d, value.fd: %d\n", *(int *)g_net.key, ((cback_net_conn *)g_net.value)->sock_fd);
+
+    void *g_net;
+    if (cback_hash_map_get(hm, &net3.sock_fd, &g_net)) {
+        printf("Got key: %d, value.fd: %d\n", net3.sock_fd, ((cback_net_conn *)g_net)->sock_fd);
+    } else {
+        fprintf(stderr, "Key not found!!!\n");
+    }
+
+    cback_hash_map_destroy(hm);
 }
