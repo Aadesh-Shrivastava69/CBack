@@ -9,7 +9,7 @@ if (BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 
-add_library(cback SHARED src/alloc.c src/net.c)
+add_library(cback SHARED src/alloc.c src/net.c src/collections.c)
 
 # NOTE: public for now, will work on visibility changes later
 target_include_directories(cback PUBLIC include)
