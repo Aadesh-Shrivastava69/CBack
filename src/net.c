@@ -5,12 +5,13 @@
 
 #include <netdb.h>
 #include <sys/socket.h>
+#include <sys/epoll.h>
 
 cback_net_conn _net_state(cback_net_state state) {
     return (cback_net_conn){.state = state};
 }
 
-cback_net_conn net_connect(cback_net_loop *loop, const char *host, const char *port) {
+cback_net_conn cback_net_connect(cback_net_loop *loop, const char *host, const char *port) {
     int sock_fd;
 
     struct addrinfo hints = {0}, *ai_list;
@@ -57,5 +58,5 @@ cback_net_conn net_connect(cback_net_loop *loop, const char *host, const char *p
 
 // Implement polling and manage sane reads and writes
 void cback_net_poll(cback_net_loop *loop, cback_net_conn *net) {
-    // epoll();
+    int epoll_fd = epoll_create1(0);
 }

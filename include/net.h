@@ -24,10 +24,12 @@ typedef struct cback_net_conn{
 // NOTE: Current implementation uses an array
 //       A HashMap is preffered ("collections.h")
 typedef struct {
+    int epoll_fd;
+
     cback_net_conn *connections;
     u32 count;
 } cback_net_loop;
 
-cback_net_conn net_connect(cback_net_loop *loop, const char *host, const char *port);
+cback_net_conn cback_net_connect(cback_net_loop *loop, const char *host, const char *port);
 
 #endif
